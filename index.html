@@ -9,19 +9,23 @@
     <script src="js/routie.min.js"></script>
     <script src="js/holder.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/mgGlitch.js"></script>
     <script>
         $(document).ready(function () {
+
             routie({
                 '': function () {
-                    $('#we').hide(1000);
-                },
-                'items': function () {
-                    $('#txt').hide(500);
-                    $('#we').show(500);
+                    $('#txt').hide();
+                    $('#mason').slideDown(500);
+                    $('#prj').addClass('active');
+                    $('#fkit').removeClass('active');
                 },
                 'news': function () {
-                    $('#mason').hide(500);
+                    $('#prj').removeClass('active');
+                    $('#fkit').addClass('active');
+                    $('#mason').slideUp(700);
                     $('#txt').show(500);
+
                 },
                 '2': function () {
                     $('#mason').hide(500);
@@ -37,11 +41,41 @@
                     gutter: 5
                 }
             });
+            $('#fkit').click(function(ev){
+                $( "body" ).mgGlitch({
+                    // set 'true' to stop the plugin
+                    destroy : false,
+                    // set 'false' to stop glitching
+                    glitch: true,
+                    // set 'false' to stop scaling
+                    scale: true,
+                    // set 'false' to stop glitch blending
+                    blend : true,
+                    // select blend mode type
+                    blendModeType : 'hue',
+                    // set min time for glitch 1 elem
+                    glitch1TimeMin : 600,
+                    // set max time for glitch 1 elem
+                    glitch1TimeMax : 900,
+                    // set min time for glitch 2 elem
+                    glitch2TimeMin : 10,
+                    // set max time for glitch 2 elem
+                    glitch2TimeMax : 115,
+                });
+                setTimeout(function () { $( "body" ).mgGlitch({ destroy : true}); }, 5000);
+
+                $('.blackout').css('z-index',10)
+                $('.blackout').animate({opacity:1},5000,'linear',function(){
+                    $( ".blackout" ).append( "<div>I mean...</div>" );
+                });
+
+            })
         });
 
     </script>
 </head>
 <body translate="no">
+<div class="blackout"></div>
 <div class="container">
     <div class="row top">
         <div class="col-12">
@@ -51,8 +85,8 @@
     <div class="row">
         <div class="col-12 nav">
             <ul>
-                <li style="float: left"><a class="active glitch" data-glitch="Projects" href=" ">Projects</a></li>
-                <li style="float: right"><a class="glitch" href="#news" data-glitch="Fkthispage">Fkthispage</a></li>
+                <li><a class="active glitch" id='prj' data-glitch="Projects" href="#">Projects</a></li>
+                <li><a class="glitch" id='fkit' href="#news" data-glitch="Die">Die</a></li>
             </ul>
         </div>
     </div>
@@ -79,6 +113,12 @@
     <div class="row" id="2" style="display: none">
         <div class="col-12">
             <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 footer">
+            <span>github</span>
+            <span>Contact</span>
         </div>
     </div>
 </div>
