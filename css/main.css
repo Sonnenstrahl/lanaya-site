@@ -10,24 +10,6 @@ li {
     display: inline-block;
 }
 
-li a {
-    display: block;
-    color: lightgrey;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
-}
-
-li a.active .underline{
-    transform: translateY(0);
-    opacity: 1;
-}
-
 #logo {
     width: 100px;
     border-radius: 50%;
@@ -123,3 +105,101 @@ p .name {
 }
 
 .grid-item--height2 { height: 200px; }
+
+.glitch {
+    font-size: 1.5em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: #fff;
+    letter-spacing: 5px;
+}
+.glitch:before, .glitch:after {
+    display: inline-block;
+    content: attr(data-glitch);
+    text-transform: uppercase;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .8;
+}
+.glitch:after {
+    color: #f0f;
+    z-index: -2;
+}
+.glitch:before {
+    color: #0ff;
+    z-index: -1;
+}
+.glitch:hover:before {
+    -webkit-animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 5;
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 5;
+}
+.glitch:hover:after {
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both 5;
+}
+
+@media only screen and (max-width: 400px) {
+    .glitch {
+        font-size: 1.5em;
+    }
+}
+@-webkit-keyframes glitch {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px);
+    }
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px);
+    }
+    to {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+@keyframes glitch {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px);
+    }
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px);
+    }
+    to {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
