@@ -105,4 +105,21 @@ p .name {
 
 * { box-sizing: border-box; }
 
+.name {
+    float: left;
+    text-transform: uppercase;
+    color: lightcoral;
+    padding: 2px;
+}
+
+.fkit {
+    float: right;
+    border: 1px solid lightcoral;
+    font-size: 16px;
+    border-radius: 1px;
+    background: none;
+    color: lightcoral;
+    text-transform: uppercase;
+}
+
 .grid-item--height2 { height: 200px; }

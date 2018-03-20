@@ -10,18 +10,22 @@
     <script src="js/holder.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             routie({
-                '': function() {
+                '': function () {
                     $('#we').hide(1000);
                 },
                 'items': function () {
                     $('#txt').hide(500);
                     $('#we').show(500);
                 },
-                'news': function(){
-                    $('#we').hide(500);
+                'news': function () {
+                    $('#mason').hide(500);
                     $('#txt').show(500);
+                },
+                '2': function () {
+                    $('#mason').hide(500);
+                    $('#2').show(500);
                 }
             });
             // init isotope
@@ -46,19 +50,19 @@
     </div>
     <div class="row">
         <div class="col-12 nav">
+            <span class="name">david haas</span>
+            <button class="fkit" style="float: right;">FK this page</button>
             <ul>
-                <li style="float: left"><p class="name">David Haas</p></li>
-                <li><a class="active glitch" data-text="HOME" href="">Home</a></li>
+                <li><a class="active glitch" data-text="HOME" href=" ">Home</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#items">Contact</a></li>
-                <li style="float:right"><p>ecksdee</p></li>
             </ul>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="mason">
         <div class="col-12">
             <div class="grid">
-                <div class="grid-item"><img src="img/datavis.png"></div>
+                <div class="grid-item"><img src="holder.js/300x200"></div>
                 <div class="grid-item"><img src="holder.js/300x200"></div>
                 <div class="grid-item"><img src="holder.js/300x200"></div>
                 <div class="grid-item"><img src="holder.js/300x200"></div>
@@ -68,22 +72,14 @@
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
             </div>
-    </div>
-    <div class="row items" id="we" style="display: none">
-        <div class="col-4 col-6-sm">
-            <img width="300" height="300" src="img/datavis.png">
-        </div>
-        <div class="col-4 col-6-sm">
-            <img src="traktor.jpeg" data-text="A Node.JS script that reads the Tracks on Deck A and B from Traktor via midi.">
-        </div>
-        <div class="col-4 col-6-sm">
-            <img  src="img/ghost3.jpg">
-        </div>
-        <div class="col-4 col-6-sm">
-            <img src="img/ghost3.jpg">
         </div>
     </div>
     <div class="row" id="txt" style="display: none">
+        <div class="col-12">
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+        </div>
+    </div>
+    <div class="row" id="2" style="display: none">
         <div class="col-12">
             <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
         </div>
