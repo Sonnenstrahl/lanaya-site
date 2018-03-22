@@ -5,26 +5,49 @@
     <title>Portfolio</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/simple-grid.min.css">
+    <style type="text/css" class="fonts" data-fonts-and-variations="custom_392|n4">
+        @font-face {
+            font-family: 'custom_392';
+            font-style:  normal;
+            font-weight: 400;
+            src: url("fonts/392.woff") format('woff')
+        }
+    </style>
+    <style type="text/css" class="fonts" data-fonts-and-variations="custom_416|n4">
+        @font-face {
+            font-family: 'custom_416';
+            font-style:  normal;
+            font-weight: 400;
+            src: url("fonts/416.woff") format('woff')
+        }
+    </style>
+    <style type="text/css" class="fonts" data-fonts-and-variations="custom_428|n4">
+        @font-face {
+            font-family: 'custom_428';
+            font-style:  normal;
+            font-weight: 400;
+            src: url("fonts/428.woff") format('woff')
+        }
+    </style>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/routie.min.js"></script>
-    <script src="js/holder.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
     <script src="js/mgGlitch.js"></script>
+    <script src="js/three.js"></script>
     <script>
         $(document).ready(function () {
-
             routie({
                 '': function () {
-                    $('#txt').hide();
+                    $('#txt').slideUp(500);
                     $('#mason').slideDown(500);
                     $('#prj').addClass('active');
                     $('#fkit').removeClass('active');
                 },
-                'news': function () {
+                'n': function () {
                     $('#prj').removeClass('active');
                     $('#fkit').addClass('active');
                     $('#mason').slideUp(700);
-                    $('#txt').show(500);
+                    $('#txt').slideDown(700);
 
                 },
                 '2': function () {
@@ -41,35 +64,78 @@
                     gutter: 5
                 }
             });
-            $('#fkit').click(function(ev){
-                $( "body" ).mgGlitch({
+            $('#fkit').click(function (ev) {
+                $("body").mgGlitch({
                     // set 'true' to stop the plugin
-                    destroy : false,
+                    destroy: false,
                     // set 'false' to stop glitching
                     glitch: true,
                     // set 'false' to stop scaling
                     scale: true,
                     // set 'false' to stop glitch blending
-                    blend : true,
+                    blend: true,
                     // select blend mode type
-                    blendModeType : 'hue',
+                    blendModeType: 'hue',
                     // set min time for glitch 1 elem
-                    glitch1TimeMin : 600,
+                    glitch1TimeMin: 600,
                     // set max time for glitch 1 elem
-                    glitch1TimeMax : 900,
+                    glitch1TimeMax: 900,
                     // set min time for glitch 2 elem
-                    glitch2TimeMin : 10,
+                    glitch2TimeMin: 10,
                     // set max time for glitch 2 elem
-                    glitch2TimeMax : 115,
+                    glitch2TimeMax: 115,
                 });
-                setTimeout(function () { $( "body" ).mgGlitch({ destroy : true}); }, 5000);
+                setTimeout(function () {
+                    $("body").mgGlitch({destroy: true});
+                }, 5000);
 
-                $('.blackout').css('z-index',10)
-                $('.blackout').animate({opacity:1},5000,'linear',function(){
-                    $( ".blackout" ).append( "<div>I mean...</div>" );
+                $('.blackout').css('z-index', 10)
+                $('.blackout').animate({opacity: 1}, 5000, 'linear', function () {
+                    $(".blackout").append("<div>I mean...</div>");
                 });
 
-            })
+            });
+
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 5000);
+
+            var renderer = new THREE.WebGLRenderer({alpha: true});
+            var thr = document.getElementById('three');
+            var tp = document.getElementById('top');
+            renderer.setSize($(tp).width(), $(tp).height());
+            thr.appendChild(renderer.domElement)
+
+            camera.lookAt(scene.position);
+
+
+            var geometry = new THREE.Geometry(0, 0, 0);
+            geometry.vertices.push(new THREE.Vector3(-1, 0, 0));
+            geometry.vertices.push(new THREE.Vector3(0, 1, 0));
+            geometry.vertices.push(new THREE.Vector3(0, 0, 0));
+            geometry.vertices.push(new THREE.Vector3(1, 0, 0));
+
+            camera.position.z = 4;
+
+            var material = new THREE.LineBasicMaterial({color: 0xff00ff});
+            var line = new THREE.Line(geometry, material);
+            //scene.add(line);
+
+            var animate = function () {
+                requestAnimationFrame(animate);
+                line.position.y = 2;
+                renderer.render(scene, camera);
+            };
+            animate();
+
+            window.addEventListener('resize', onWindowResize, false);
+
+            function onWindowResize() {
+
+                camera.updateProjectionMatrix();
+
+                renderer.setSize($(tp).width(), $(tp).height());
+
+            }
         });
 
     </script>
@@ -77,37 +143,35 @@
 <body translate="no">
 <div class="blackout"></div>
 <div class="container">
-    <div class="row top">
+    <div class="row top" id="top">
         <div class="col-12">
+            <div class="three" id="three"></div>
             <img id="logo" src="img/ghost3.jpg">
         </div>
     </div>
     <div class="row">
         <div class="col-12 nav">
             <ul>
-                <li><a class="active glitch" id='prj' data-glitch="Projects" href="#">Projects</a></li>
+                <li><a class="active glitch" id='prj' data-glitch="Projects" href="#">Pr0jects</a></li>
                 <li><a class="glitch" id='fkit' href="#news" data-glitch="Die">Die</a></li>
             </ul>
+        </div>
+
+    </div>
+    <div class="row" id="txt" style="display: none">
+        <div class="col-12">
+            <a href="#" class="close-button"></a>
+            <span class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
         </div>
     </div>
     <div class="row" id="mason">
         <div class="col-12">
             <div class="grid">
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"><img src="holder.js/300x200"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
+                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/datavis.png');"><span class="overlay">DatavIs</span></div>
+                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/300x200.png');"><span class="overlay">Auftakt</span></div>
+                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/300x200.png');"><span class="overlay">f0ndapi</span></div>
+                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/300x200.png');"><span class="overlay">trakt0r</span></div>
             </div>
-        </div>
-    </div>
-    <div class="row" id="txt" style="display: none">
-        <div class="col-12">
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
         </div>
     </div>
     <div class="row" id="2" style="display: none">
