@@ -15,18 +15,15 @@ li .active {
 }
 
 span {
-    text-align: justify;
     font-family: custom_428;
     color: white;
 }
 
 #logo {
     width: 100px;
-    border-radius: 50%;
     overflow: hidden;
     display: block;
     margin: 0 auto;
-    border: 5px solid lightgray;
 }
 
 body {
@@ -208,6 +205,11 @@ p .name {
 
 .footer {
     border-top: 1px solid lightgrey;
+    text-align: center;
+}
+.footer > span {
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .blackout {
@@ -424,6 +426,7 @@ grid > .grid-item {
     font-size: 2em;
     font-family: custom_428;
     text-align: left;
+    justify-content: left;
     pointer-events: none;
     text-transform: lowercase;
 }
@@ -462,4 +465,113 @@ grid > .grid-item {
 .description {
     text-justify: inter-word;
     text-align: justify;
+}
+.description-img {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url("../img/file.png") center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+}
+
+.killme {
+    font-size: 0.8em;
+}
+.footer-href {
+    font-family: custom_428;
+    text-decoration: none;
+    color: white;
+    pointer-events: visible;
+    text-align: center;
+    text-transform: revert;
+}
+
+.link {
+    color: white;
+    font-family: custom_428;
+}
+
+pre code {
+    background-color: #eee;
+    border: 1px solid white;
+    display: block;
+    padding: 5px;
+    text-align: left;
+}
+
+pre {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+input, textarea{
+    background-color: transparent;
+    color: white;
+    border: 1px solid whitesmoke;
+    margin: 10px;
+    width: 50%;
+    font-weight: 700;
+    font-family: custom_428;
+    font-size: 1em;
+}
+input {
+    height: 25px;
+}
+textarea{
+    height: 100px;
+}
+
+input[type=submit] {
+    background-color: transparent;
+    color: white;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    font-weight: 700;
+    font-family: custom_428;
+    font-size: 1em;
+}
+
+form {
+    display: inline;
+    text-align: center;
+}
+
+input:focus, textarea:focus {
+    outline-color: whitesmoke;
+    outline-style: solid;
+    outline-width: 2px;
 }

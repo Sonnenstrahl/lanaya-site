@@ -5,10 +5,12 @@
     <title>Portfolio</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/simple-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+    <link rel="stylesheet" type="text/css" href="css/lazyYT.css">
     <style type="text/css" class="fonts" data-fonts-and-variations="custom_392|n4">
         @font-face {
             font-family: 'custom_392';
-            font-style:  normal;
+            font-style: normal;
             font-weight: 400;
             src: url("fonts/392.woff") format('woff')
         }
@@ -16,7 +18,7 @@
     <style type="text/css" class="fonts" data-fonts-and-variations="custom_416|n4">
         @font-face {
             font-family: 'custom_416';
-            font-style:  normal;
+            font-style: normal;
             font-weight: 400;
             src: url("fonts/416.woff") format('woff')
         }
@@ -24,7 +26,7 @@
     <style type="text/css" class="fonts" data-fonts-and-variations="custom_428|n4">
         @font-face {
             font-family: 'custom_428';
-            font-style:  normal;
+            font-style: normal;
             font-weight: 400;
             src: url("fonts/428.woff") format('woff')
         }
@@ -33,26 +35,52 @@
     <script src="js/routie.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
     <script src="js/mgGlitch.js"></script>
-    <script src="js/three.js"></script>
+    <script src="js/lazyYT.js"></script>
     <script>
         $(document).ready(function () {
+            $('.lazyYT').lazyYT();
             routie({
                 '': function () {
                     $('#txt').slideUp(500);
+                    $('#datavis').slideUp(500);
+                    $('#fondapi').slideUp(500);
+                    $('#traktor').slideUp(500);
+                    $('#raisenow').slideUp(500);
+                    $('#contact').slideUp(500);
                     $('#mason').slideDown(500);
                     $('#prj').addClass('active');
                     $('#fkit').removeClass('active');
+                },
+                'contact': function () {
+                    $('#txt').slideUp(500);
+                    $('#datavis').slideUp(500);
+                    $('#fondapi').slideUp(500);
+                    $('#traktor').slideUp(500);
+                    $('#raisenow').slideUp(500);
+                    $('#mason').slideUp(700);
+                    $('#contact').slideDown(700);
                 },
                 'n': function () {
                     $('#prj').removeClass('active');
                     $('#fkit').addClass('active');
                     $('#mason').slideUp(700);
                     $('#txt').slideDown(700);
-
                 },
-                '2': function () {
-                    $('#mason').hide(500);
-                    $('#2').show(500);
+                'datavis': function () {
+                    $('#mason').slideUp(700);
+                    $('#datavis').slideDown(700);
+                },
+                'fondapi': function () {
+                    $('#mason').slideUp(700);
+                    $('#fondapi').slideDown(700);
+                },
+                'traktor': function () {
+                    $('#mason').slideUp(700);
+                    $('#traktor').slideDown(700);
+                },
+                'raisenow': function () {
+                    $('#mason').slideUp(700);
+                    $('#raisenow').slideDown(700);
                 }
             });
             // init isotope
@@ -88,54 +116,19 @@
                 setTimeout(function () {
                     $("body").mgGlitch({destroy: true});
                 }, 5000);
-
                 $('.blackout').css('z-index', 10)
                 $('.blackout').animate({opacity: 1}, 5000, 'linear', function () {
                     $(".blackout").append("<div>I mean...</div>");
                 });
 
             });
-
-            var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 5000);
-
-            var renderer = new THREE.WebGLRenderer({alpha: true});
-            var thr = document.getElementById('three');
-            var tp = document.getElementById('top');
-            renderer.setSize($(tp).width(), $(tp).height());
-            thr.appendChild(renderer.domElement)
-
-            camera.lookAt(scene.position);
-
-
-            var geometry = new THREE.Geometry(0, 0, 0);
-            geometry.vertices.push(new THREE.Vector3(-1, 0, 0));
-            geometry.vertices.push(new THREE.Vector3(0, 1, 0));
-            geometry.vertices.push(new THREE.Vector3(0, 0, 0));
-            geometry.vertices.push(new THREE.Vector3(1, 0, 0));
-
-            camera.position.z = 4;
-
-            var material = new THREE.LineBasicMaterial({color: 0xff00ff});
-            var line = new THREE.Line(geometry, material);
-            //scene.add(line);
-
-            var animate = function () {
-                requestAnimationFrame(animate);
-                line.position.y = 2;
-                renderer.render(scene, camera);
-            };
-            animate();
-
-            window.addEventListener('resize', onWindowResize, false);
-
-            function onWindowResize() {
-
-                camera.updateProjectionMatrix();
-
-                renderer.setSize($(tp).width(), $(tp).height());
-
-            }
+            $('#stopmepls').on('click', function () {
+                var video = $("iframe").attr("src");
+                $("iframe").attr("src","");
+                $("iframe").attr("src",video.slice(0,-2));
+            });
+            var vid = document.getElementById("bg_vid");
+            vid.playbackRate = 0.75;
         });
 
     </script>
@@ -145,15 +138,16 @@
 <div class="container">
     <div class="row top" id="top">
         <div class="col-12">
-            <div class="three" id="three"></div>
-            <img id="logo" src="img/ghost3.jpg">
+            <img id="logo" src="img/lanaya.png">
         </div>
     </div>
     <div class="row">
         <div class="col-12 nav">
             <ul>
-                <li><a class="active glitch" id='prj' data-glitch="Projects" href="#">Pr0jects</a></li>
-                <li><a class="glitch" id='fkit' href="#news" data-glitch="Die">Die</a></li>
+                <li><a class="active glitch" id='prj' data-glitch="David Haas" href="#">David Haas</a></li>
+                <!--
+                                <li><a class="glitch" id='fkit' href="#news" data-glitch="Die">Die</a></li>
+                -->
             </ul>
         </div>
 
@@ -164,26 +158,145 @@
             <span class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
         </div>
     </div>
+
+    <!-- Form Action -->
+    <div class="row" id="contact" style="display: none">
+        <div class="col-12">
+            <a href="#" class="close-button" style="z-index: 10"></a>
+            <form action="https://formspree.io/d@byom.de" method="POST">
+                <div class="row"><span style="padding-left:30px">contact me</span></div>
+
+                <div class="row">
+                    <input type="text" name="name" placeholder="name.">
+                </div>
+                <div class="row">
+                <input type="email" name="_replyto" placeholder="email." required>
+                </div>
+                <div class="row">
+                <textarea name="message" placeholder="message." required></textarea>
+                </div>
+                <div class="row">
+                <input type="submit" value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Data VIS -->
+
+    <div class="row" id="datavis" style="display: none">
+        <div class="col-12">
+            <div class="row">
+            <a href="#" class="close-button"></a>
+            <span class="description">This project was part of my Bsc. Thesis. It is a visualization to help researchers analyze how people allocate their time.
+                The dataset used is the "Multinational Time Use Study" from the Centre for Time Use Research.<br>
+                The data is cross referenced and every chart will instantly update if changes occur in one. This allows for a fluid user experience.<br><br>
+            </span>
+                <img class="description-img" src="https://camo.githubusercontent.com/d42e175cdfd3405975e347d230b62893bbddd9d7/68747470733a2f2f692e696d6775722e636f6d2f5355595a62354c2e676966">
+                <br>
+            <span class="description">
+                A working demo and the repo can be found below:
+            </span>
+            </div>
+            ►<a class="link" href="https://datavis.lanaya.io" target="_blank">demo</a>
+            ►<a class="link" href="https://github.com/Sonnenstrahl/datavis" target="_blank">repo</a>
+        </div>
+    </div>
+
+    <!-- Fond API -->
+    <div class="row" id="fondapi" style="display: none">
+        <div class="col-12">
+            <div class="row">
+                <a href="#" class="close-button"></a>
+                <span class="description">A simple API written in Node. Used to get the NAV price of fonds in MS Excel.<br>
+                    For example:
+                    <pre>
+                        <code>
+                            https://api.lanaya.io/isin/LU0284394664
+                        </code>
+                    </pre>
+                    yields:
+                    <pre>
+                        <code>
+                            {"isin":"LU0284394664","value":178.29,"currency":"EUR"}
+                        </code>
+                    </pre>
+            </span>
+            </div>
+            ►<a class="link" href="https://github.com/Sonnenstrahl/fondapi" target="_blank">repo</a>
+        </div>
+    </div>
+
+<!-- TRAKTOR -->
+    <div class="row" id="traktor" style="display: none">
+        <div class="col-12">
+            <div class="row">
+                <a href="#" class="close-button"></a>
+                <span class="description">A tool a wrote for a DJ friend of mine who was looking into Live Streaming his sets.
+                    Unfortunately Traktor doesn't provide an API to read out the currently playing song.
+                    A feature that would be useful to display track names on Twitch.tv.<br>
+                    As it turns out there are ways to send track names via MIDI, so I wrote this tool in Node.<br>
+                </span>
+                <br>
+                <span class="description">
+                For in-depth details, please check out the repo:
+            </span>
+            </div>
+            ►<a class="link" href="https://github.com/Sonnenstrahl/traktor-now-playing" target="_blank">repo</a>
+        </div>
+    </div>
+
+    <!-- RAISENOW -->
+    <div class="row" id="raisenow" style="display: none">
+        <div class="col-12">
+            <div class="row">
+                <a href="#" class="close-button" id="stopmepls"></a>
+                <span class="description">During my internship at RaiseNow as webdev I created a promotional video for one of their products.
+                    <br>This was a side project and took my about 200 hours in total.
+                    <br>
+                </span>
+                <br>
+                <div class="lazyYT" data-youtube-id="I4BulgRyBzk" data-ratio="16:9"></div>
+            </div>
+        </div>
+    </div>
     <div class="row" id="mason">
         <div class="col-12">
             <div class="grid">
-                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/datavis.png');"><span class="overlay">DatavIs</span></div>
-                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/300x200.png');"><span class="overlay">Auftakt</span></div>
-                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/300x200.png');"><span class="overlay">f0ndapi</span></div>
-                <div onclick="window.location='#n';" class="grid-item" style="background-image: url('img/300x200.png');"><span class="overlay">trakt0r</span></div>
+                <div onclick="window.location='#datavis';" class="grid-item"
+                     style="background-image: url('img/datavis.png');"><span class="overlay">Data01.vis</span></div>
+                <div onclick="window.location='#fondapi';" class="grid-item"
+                     style="background-image: url('img/fondapi.png');"><span class="overlay">f0nd.api</span></div>
+                <div onclick="window.location='#traktor';" class="grid-item"
+                     style="background-image: url('img/traktor.png');"><span class="overlay">trakt0r.js</span></div>
+                <div onclick="window.location='#raisenow';" class="grid-item"
+                     style="background-image: url('img/giving.png');"><span class="overlay">RaiseN0w.mov</span></div>
+                <div onclick="window.location='#n';" class="grid-item"
+                     style="background-image: url('img/300x200.png');"><span class="overlay">HCI.course</span></div>
+                <div onclick="window.location='#n';" class="grid-item"
+                     style="background-image: url('img/auftakt.png');"><span class="overlay">Auftakt.psd</span></div>
+                <div onclick="window.location='#n';" class="grid-item"
+                     style="background-image: url('img/300x200.png');"><span class="overlay">rand0m.bin</span></div>
             </div>
         </div>
     </div>
     <div class="row" id="2" style="display: none">
         <div class="col-12">
             <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+            <span><span class="icon-github">repo</span></span>
         </div>
     </div>
     <div class="row">
         <div class="col-12 footer">
-            <span>github</span>
-            <span>Contact</span>
+            <a style="margin-right: 10px; text-decoration: none" href="https://github.com/sonnenstrahl"><span class="icon-github"></span></a>
+            <a style="margin-left:10px; text-decoration: none" href="#contact"><span class="icon-mail"></span></a>
         </div>
+    </div>
+
+    <div class="fullscreen-bg">
+        <video controls loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video" id="bg_vid">
+            <source src="img/file.webm" type="video/webm">
+            <source src="img/file.mp4" type="video/mp4">
+        </video>
     </div>
 </div>
 </body>
