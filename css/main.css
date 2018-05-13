@@ -602,4 +602,6 @@ input:focus, textarea:focus {
     top: 0;
     background-color: black;!important;
     z-index: 2;
+    -webkit-backface-visibility: hidden;
+
 }
