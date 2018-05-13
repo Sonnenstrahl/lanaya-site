@@ -1,3 +1,15 @@
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: custom_416;
+    text-transform: uppercase;
+    text-decoration: solid white;
+    color: lightgrey;
+}
+
+h3 {
+    margin-top: 0px !important;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -53,6 +65,8 @@ p .name {
 }
 
 .grid {
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
     /* center */
     margin: 0 auto;
 }
@@ -66,7 +80,7 @@ p .name {
 
 /* ---- grid-item ---- */
 .grid-item {
-    min-width: 300px;
+    width: 300px;
     height: 200px;
     float: left;
     margin-bottom: 5px;
@@ -233,13 +247,6 @@ p .name {
     font-weight: 400;
     text-transform: uppercase;
     z-index: 2;
-}
-
-.three {
-    z-index:-3;
-    display: block;
-    position: absolute;
-
 }
 
 @keyframes flicker {
@@ -540,8 +547,9 @@ pre code {
     background-color: #eee;
     border: 1px solid white;
     display: block;
-    padding: 5px;
-    text-align: left;
+    padding: 15px;
+    word-break: keep-all;
+    white-space: pre-wrap;
 }
 
 pre {
@@ -587,4 +595,11 @@ input:focus, textarea:focus {
     outline-color: whitesmoke;
     outline-style: solid;
     outline-width: 2px;
+}
+
+.fix-close {
+    position: fixed;
+    top: 0;
+    background-color: black;!important;
+    z-index: 2;
 }

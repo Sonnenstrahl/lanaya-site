@@ -38,6 +38,7 @@
     <script src="js/mgGlitch.js"></script>
     <script src="js/lazyYT.js"></script>
     <script>
+
         $(document).ready(function () {
             $('.lazyYT').lazyYT();
             routie({
@@ -90,9 +91,10 @@
                 masonry: {
                     columnWidth: 300,
                     isFitWidth: true,
-                    gutter: 5
+                    gutter: 5,
                 }
             });
+
             $('#fkit').click(function (ev) {
                 $("body").mgGlitch({
                     // set 'true' to stop the plugin
@@ -123,20 +125,44 @@
                 });
 
             });
+
             $('#stopmepls').on('click', function () {
                 var video = $("iframe").attr("src");
                 $("iframe").attr("src","");
                 $("iframe").attr("src",video.slice(0,-2));
             });
+
             var vid = document.getElementById("bg_vid");
             vid.playbackRate = 0.75;
+
+            //Scroll the Button
+            var closeFix = $('.close-button:visible');
+            $(window).scroll( function (e) {
+                if ($(this).scrollTop()> 210) {
+                    closeFix.each(function () {
+                        $(this).addClass('fix-close');
+                        var px_container = $('.container').css('marginRight');
+                        var px_col= $('.col-12').css('marginRight');
+                        var px_container_trim= px_container.slice(0,-2);
+                        var px_col_trim= px_col.slice(0,-2);
+                        var converted = (parseFloat(px_col_trim)+parseFloat(px_container_trim)).toString()+'px';
+                        $(this).css('right',converted)
+                    })
+                }
+                else {
+                    closeFix.each(function () {
+                        $(this).removeClass('fix-close');
+                        $(this).css('right','');
+                    });
+                }
+            });
         });
 
     </script>
 </head>
 <body translate="no">
 <div class="blackout"></div>
-<div class="container">
+<div class="container" id="scroll">
     <div class="row top" id="top">
         <div class="col-12">
             <img id="logo" src="img/lanaya.png">
@@ -187,16 +213,20 @@
     <div class="row" id="datavis" style="display: none">
         <div class="col-12">
             <div class="row">
-            <a href="#" class="close-button"></a>
-            <span class="description">This project was part of my Bsc. Thesis. It is a visualization to help researchers analyze how people allocate their time.
+                <a href="#" class="close-button"></a>
+                <h3>Datavis</h3>
+            </div>
+            <div class="row">
+                <span class="description">This project was part of my Bsc. Thesis. It is a visualization to help researchers analyze how people allocate their time.
+                The dataset used is the "Multinational Time Use Study" from the Centre for Time Use Research.<br>
+                The data is cross referenced and every chart will instantly update if changes occur in one. This allows for a fluid user experience.<br><br>
+            </span>
+                <span class="description">This project was part of my Bsc. Thesis. It is a visualization to help researchers analyze how people allocate their time.
                 The dataset used is the "Multinational Time Use Study" from the Centre for Time Use Research.<br>
                 The data is cross referenced and every chart will instantly update if changes occur in one. This allows for a fluid user experience.<br><br>
             </span>
                 <img class="description-img" src="https://camo.githubusercontent.com/d42e175cdfd3405975e347d230b62893bbddd9d7/68747470733a2f2f692e696d6775722e636f6d2f5355595a62354c2e676966">
-                <br>
-            <span class="description">
-                A working demo and the repo can be found below:
-            </span>
+                <h4>Links</h4>
             </div>
             ►<a class="link" href="https://datavis.lanaya.io" target="_blank">demo</a>
             ►<a class="link" href="https://github.com/Sonnenstrahl/datavis" target="_blank">repo</a>
@@ -211,14 +241,11 @@
                 <span class="description">A simple API written in Node. Used to get the NAV price of fonds in MS Excel.<br>
                     For example:
                     <pre>
-                        <code>
-                            https://api.lanaya.io/isin/LU0284394664
-                        </code>
+                        <code>https://api.lanaya.io/isin/LU0284394664</code>
                     </pre>
                     yields:
                     <pre>
-                        <code>
-                            {"isin":"LU0284394664","value":178.29,"currency":"EUR"}
+                        <code>{ "isin" : "LU0284394664", "value" : 178.29, "currency" : "EUR" }
                         </code>
                     </pre>
             </span>
