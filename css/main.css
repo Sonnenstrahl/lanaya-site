@@ -505,7 +505,7 @@ grid > .grid-item {
         display: none;
     }
 
-    .grid {
+/*    .grid {
         width: 100% !important;
         margin: 0;
     }
@@ -516,7 +516,7 @@ grid > .grid-item {
         margin-bottom: 5px;
         background-size: 100%;
         filter: grayscale(100%);
-    }
+    }*/
 }
 
 .killme {
